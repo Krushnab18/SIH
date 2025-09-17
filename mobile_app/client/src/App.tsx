@@ -117,7 +117,7 @@ function Router() {
 
       {/* Report Issue Modal */}
       <Dialog open={showReportForm} onOpenChange={setShowReportForm}>
-        <DialogContent className="max-w-lg h-screen sm:max-h-[90vh] overflow-y-auto p-0">
+        <DialogContent className="max-w-lg overflow-y-auto p-0">
           <ReportIssueForm 
             onSubmit={handleReportSubmit}
             onCancel={() => setShowReportForm(false)}
