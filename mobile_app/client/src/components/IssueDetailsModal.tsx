@@ -26,13 +26,10 @@ export default function IssueDetailsModal({ issue, open, onClose }: IssueDetails
 
   return (
     <Dialog open={open} onOpenChange={(open) => !open && handleClose()}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto" data-testid="modal-issue-details">
+      <DialogContent className="max-w-2xl overflow-y-auto" data-testid="modal-issue-details">
         <DialogHeader>
           <DialogTitle className="flex items-center justify-between">
             Issue Details
-            <Button size="icon" variant="ghost" onClick={handleClose} data-testid="button-close-modal">
-              <X className="h-4 w-4" />
-            </Button>
           </DialogTitle>
         </DialogHeader>
 
