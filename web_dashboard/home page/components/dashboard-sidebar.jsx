@@ -1,10 +1,6 @@
 "use client"
 import { UserIcon, FileTextIcon, AlertCircleIcon, BarChart3Icon, LayoutDashboardIcon, ChevronRightIcon } from "./icons"
 
-interface SidebarProps {
-  activeSection: string
-  onSectionChange: (section: string) => void
-}
 
 const sidebarItems = [
   {
@@ -39,7 +35,7 @@ const sidebarItems = [
   },
 ]
 
-export function DashboardSidebar({ activeSection, onSectionChange }: SidebarProps) {
+export function DashboardSidebar({ activeSection, onSectionChange }) {
   return (
     <div className="sidebar">
       <div className="sidebar-header">

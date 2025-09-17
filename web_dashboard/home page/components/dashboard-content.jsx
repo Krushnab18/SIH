@@ -15,11 +15,9 @@ import {
   EditIcon,
 } from "./icons"
 
-interface DashboardContentProps {
-  activeSection: string
-}
-
-export function DashboardContent({ activeSection }: DashboardContentProps) {
+// Remove TypeScript interface and use plain props
+export function DashboardContent(props) {
+  const { activeSection } = props
 
   const arr = [
     {
