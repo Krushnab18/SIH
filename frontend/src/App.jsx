@@ -2,12 +2,12 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Home from "./pages/HomePage";
-import Dashboard from "./pages/DashboardPage";
+import Dashboard from "./pages/DashBoardPage";
 import Issues from "./pages/IssuesPage";
 import SettingsPage from "./pages/Settings";
 import Users from "./pages/UserPage";
 
-import NotFound from "./pages/NotFound";
+import NotFound from "./pages/Notfound";
 
 // Dummy Toaster and Tooltip components using Tailwind
 const Toaster = () => (
