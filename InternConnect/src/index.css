@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Professional design system with modern color palette
+All colors MUST be HSL for consistency and accessibility
+*/
+
+@layer base {
+  :root {
+    /* Base colors - Professional slate palette */
+    --background: 210 20% 98%;
+    --foreground: 215 28% 17%;
+
+    /* Card colors with subtle depth */
+    --card: 0 0% 100%;
+    --card-foreground: 215 28% 17%;
+
+    /* Popover colors */
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 28% 17%;
+
+    /* Primary brand - Deep professional blue */
+    --primary: 218 70% 46%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary colors - Refined gray */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 215 28% 17%;
+
+    /* Muted tones for subtle elements */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 20% 45%;
+
+    /* Accent - Sophisticated emerald */
+    --accent: 158 64% 52%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Status colors - Professional palette */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 158 64% 41%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 43 96% 56%;
+    --warning-foreground: 0 0% 9%;
+
+    --info: 204 94% 94%;
+    --info-foreground: 204 100% 40%;
+
+    /* Borders and inputs - Refined grays */
+    --border: 210 40% 93%;
+    --input: 210 40% 93%;
+    --ring: 218 70% 46%;
+
+    --radius: 0.5rem;
+
+    /* Professional gradient definitions */
+    --gradient-primary: linear-gradient(135deg, hsl(218 70% 46%) 0%, hsl(225 70% 58%) 50%, hsl(230 65% 50%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(210 40% 96%) 0%, hsl(210 40% 92%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(158 64% 52%) 0%, hsl(165 64% 45%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(218 70% 46%) 0%, hsl(210 75% 55%) 50%, hsl(200 80% 60%) 100%);
+    --gradient-card: linear-gradient(145deg, hsla(0, 0%, 100%, 0.95) 0%, hsla(210, 40%, 99%, 0.95) 100%);
+    --gradient-surface: linear-gradient(135deg, hsl(210 20% 98%) 0%, hsl(210 30% 95%) 100%);
+
+    /* Glassmorphism effects */
+    --glass-bg: hsla(0, 0%, 100%, 0.85);
+    --glass-border: hsla(210, 40%, 93%, 0.3);
+    --glass-shadow: 0 8px 32px hsla(218, 70%, 46%, 0.15);
+
+    /* Advanced shadows */
+    --shadow-sm: 0 1px 2px hsla(218, 70%, 46%, 0.05);
+    --shadow-md: 0 4px 6px hsla(218, 70%, 46%, 0.1), 0 2px 4px hsla(218, 70%, 46%, 0.06);
+    --shadow-lg: 0 10px 15px hsla(218, 70%, 46%, 0.1), 0 4px 6px hsla(218, 70%, 46%, 0.05);
+    --shadow-xl: 0 20px 25px hsla(218, 70%, 46%, 0.1), 0 10px 10px hsla(218, 70%, 46%, 0.04);
+
+    /* Interactive states */
+    --hover-overlay: hsla(218, 70%, 46%, 0.05);
+    --active-overlay: hsla(218, 70%, 46%, 0.08);
+  }
+
+  .dark {
+    /* Dark mode - Professional dark palette */
+    --background: 215 28% 8%;
+    --foreground: 210 20% 98%;
+
+    --card: 215 28% 12%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 215 28% 12%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 218 70% 56%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 215 28% 15%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 215 28% 15%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 158 64% 52%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --success: 158 64% 41%;
+    --success-foreground: 0 0% 98%;
+
+    --warning: 43 96% 56%;
+    --warning-foreground: 0 0% 9%;
+
+    --border: 215 28% 18%;
+    --input: 215 28% 18%;
+    --ring: 218 70% 56%;
+
+    /* Dark mode gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(218 70% 56%) 0%, hsl(225 70% 48%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(218 70% 56%) 0%, hsl(210 75% 45%) 50%, hsl(200 80% 50%) 100%);
+    --glass-bg: hsla(215, 28%, 12%, 0.85);
+    --glass-border: hsla(215, 28%, 18%, 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

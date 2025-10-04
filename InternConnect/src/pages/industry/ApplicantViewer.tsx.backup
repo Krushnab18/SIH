@@ -1,0 +1,284 @@
+import { useState } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { mockApplications } from '@/data/mockData';
+import { demoUsers } from '@/types/user';
+import { UserCheck, Calendar, Award, Star, Send, User, GraduationCap, Code, Trophy, FileText, Video, Clock, ExternalLink, CheckCircle, Eye, Download } from 'lucide-react';
+import { toast } from 'sonner';
+
+export default function ApplicantViewer() {
+  const [showScheduleDialog, setShowScheduleDialog] = useState(false);
+  const [showEvaluationDialog, setShowEvaluationDialog] = useState(false);
+  const [showResumeViewer, setShowResumeViewer] = useState(false);
+  const [currentResumeUrl, setCurrentResumeUrl] = useState<string>('');
+  const [timeSlots, setTimeSlots] = useState(['', '', '']);
+  const applications = mockApplications;
+
+  const handleScheduleInterview = () => {
+    toast.success('Interview slots sent to candidate!');
+    setShowScheduleDialog(false);
+  };
+
+  const handleSubmitEvaluation = () => {
+    toast.success('Evaluation submitted successfully!');
+    setShowEvaluationDialog(false);
+  };
+
+  const handleViewResume = (resumeUrl: string) => {
+    setCurrentResumeUrl(resumeUrl);
+    setShowResumeViewer(true);
+  };
+
+  const handleDownloadResume = (resumeUrl: string, studentName: string) => {
+    const link = document.createElement('a');
+    link.href = resumeUrl;
+    link.download = `${studentName.replace(/\s+/g, '_')}_Resume.pdf`;
+    link.click();
+    toast.success(`Resume downloaded!`);
+  };
+
+  return (
+    <div className="container mx-auto p-6 space-y-6">
+      <div>
+        <h1 className="text-3xl font-bold text-foreground mb-2">Applicant Management</h1>
+        <p className="text-muted-foreground">Review applications and manage the hiring process</p>
+      </div>
+
+      <div className="space-y-4">
+        {applications.map((app) => (
+          <Card key={app.id} className="shadow-lg">
+            <CardHeader>
+              <div className="flex items-start justify-between">
+                <div>
+                  <CardTitle className="text-2xl">{app.studentName}</CardTitle>
+                  <CardDescription className="text-base mt-1">
+                    Applied for: {app.listingTitle}
+                  </CardDescription>
+                </div>
+                <Badge 
+                  variant={app.status === 'accepted' ? 'success' : app.status === 'shortlisted' ? 'warning' : 'secondary'}
+                  className="capitalize"
+                >
+                  {app.status.replace('-', ' ')}
+                </Badge>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <span className="text-muted-foreground">Institution:</span>
+                  <p className="font-medium">COEP Technological University</p>
+                </div>
+                <div>
+                  <span className="text-muted-foreground">Applied Date:</span>
+                  <p className="font-medium">{new Date(app.appliedDate).toLocaleDateString()}</p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                <Badge variant="secondary">Python</Badge>
+                <Badge variant="secondary">Java</Badge>
+                <Badge variant="secondary">Data Structures</Badge>
+                <Badge variant="secondary">Problem Solving</Badge>
+              </div>
+
+              {app.resumeUrl && (
+                <div className="flex gap-2">
+                  <Button 
+                    variant="outline" 
+                    className="flex-1"
+                    onClick={() => handleViewResume(app.resumeUrl!)}
+                  >
+                    <Eye className="mr-2 h-4 w-4" />
+                    View Resume
+                  </Button>
+                  <Button 
+                    variant="outline"
+                    onClick={() => handleDownloadResume(app.resumeUrl!, app.studentName)}
+                  >
+                    <Download className="h-4 w-4" />
+                  </Button>
+                </div>
+              )}
+
+              {app.status === 'applied' && (
+                <div className="flex space-x-3">
+                  <Button className="flex-1">
+                    <UserCheck className="mr-2 h-4 w-4" />
+                    Shortlist Candidate
+                  </Button>
+                  <Button variant="outline" className="flex-1">
+                    View Full Profile
+                  </Button>
+                </div>
+              )}
+
+              {app.status === 'shortlisted' && (
+                <div className="space-y-3">
+                  <div className="p-4 bg-warning/10 border border-warning/20 rounded-lg">
+                    <p className="font-medium mb-2">Next Step: Schedule Interview</p>
+                    <p className="text-sm text-muted-foreground">
+                      This candidate has been shortlisted. Propose interview time slots.
+                    </p>
+                  </div>
+                  <div className="flex justify-end">
+                    <Button onClick={() => setShowScheduleDialog(true)}>
+                      <Calendar className="mr-2 h-4 w-4" />
+                      Schedule Interview
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {app.status === 'interview-scheduled' && (
+                <div className="space-y-3">
+                  <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg">
+                    <p className="font-medium mb-2">Interview Confirmed</p>
+                    <p className="text-sm">
+                      Scheduled for: <span className="font-medium">{app.selectedSlot}</span>
+                    </p>
+                  </div>
+                  <div className="flex justify-end">
+                    <Button className="bg-success hover:bg-success/90">
+                      <Award className="mr-2 h-4 w-4" />
+                      Issue Offer
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {app.status === 'accepted' && (
+                <div className="space-y-3">
+                  <div className="p-4 bg-success/10 border border-success/20 rounded-lg">
+                    <p className="font-medium mb-2 flex items-center text-success">
+                      <Award className="mr-2 h-4 w-4" />
+                      Onboarded Successfully
+                    </p>
+                    <p className="text-sm">
+                      This candidate has accepted the offer and is currently interning.
+                    </p>
+                  </div>
+                  <div className="flex justify-end">
+                    <Button onClick={() => setShowEvaluationDialog(true)}>
+                      <Star className="mr-2 h-4 w-4" />
+                      Complete Final Evaluation
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <Dialog open={showScheduleDialog} onOpenChange={setShowScheduleDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Schedule Interview</DialogTitle>
+            <DialogDescription>
+              Propose three time slots for the candidate to choose from
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            {timeSlots.map((slot, index) => (
+              <div key={index} className="space-y-2">
+                <Label htmlFor={`slot-${index}`}>Time Slot {index + 1}</Label>
+                <Input
+                  id={`slot-${index}`}
+                  type="datetime-local"
+                  value={slot}
+                  onChange={(e) => {
+                    const newSlots = [...timeSlots];
+                    newSlots[index] = e.target.value;
+                    setTimeSlots(newSlots);
+                  }}
+                />
+              </div>
+            ))}
+            <div className="flex justify-end space-x-2 pt-4">
+              <Button variant="outline" onClick={() => setShowScheduleDialog(false)}>Cancel</Button>
+              <Button onClick={handleScheduleInterview}>
+                <Send className="mr-2 h-4 w-4" />
+                Send to Candidate
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showEvaluationDialog} onOpenChange={setShowEvaluationDialog}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Final Evaluation</DialogTitle>
+            <DialogDescription>
+              Provide a comprehensive evaluation of the intern's performance
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-6">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Technical Skills (1-5 ⭐)</Label>
+                <Input type="number" min="1" max="5" placeholder="5" />
+              </div>
+              <div className="space-y-2">
+                <Label>Communication (1-5 ⭐)</Label>
+                <Input type="number" min="1" max="5" placeholder="5" />
+              </div>
+              <div className="space-y-2">
+                <Label>Teamwork (1-5 ⭐)</Label>
+                <Input type="number" min="1" max="5" placeholder="5" />
+              </div>
+              <div className="space-y-2">
+                <Label>Problem Solving (1-5 ⭐)</Label>
+                <Input type="number" min="1" max="5" placeholder="5" />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label>Overall Comments</Label>
+              <Textarea 
+                placeholder="Provide detailed feedback about the intern's performance, strengths, and areas of improvement..."
+                rows={5}
+              />
+            </div>
+            <div className="flex justify-end space-x-2">
+              <Button variant="outline" onClick={() => setShowEvaluationDialog(false)}>Cancel</Button>
+              <Button onClick={handleSubmitEvaluation} className="bg-success hover:bg-success/90">
+                Submit Evaluation
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Resume Viewer Dialog */}
+      <Dialog open={showResumeViewer} onOpenChange={setShowResumeViewer}>
+        <DialogContent className="max-w-4xl h-[85vh]">
+          <DialogHeader>
+            <DialogTitle>Applicant Resume</DialogTitle>
+            <DialogDescription>
+              Review the candidate's resume and qualifications
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex-1 overflow-hidden rounded-md border">
+            {currentResumeUrl && (
+              <iframe
+                src={currentResumeUrl}
+                className="w-full h-full"
+                title="Resume PDF Viewer"
+                style={{ minHeight: '650px' }}
+              />
+            )}
+          </div>
+          <div className="flex justify-end">
+            <Button variant="outline" onClick={() => setShowResumeViewer(false)}>Close</Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}

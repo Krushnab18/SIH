@@ -1,0 +1,115 @@
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/Resources <<
+/Font <<
+/F1 4 0 R
+>>
+>>
+/MediaBox [0 0 612 792]
+/Contents 5 0 R
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+5 0 obj
+<<
+/Length 450
+>>
+stream
+BT
+/F1 18 Tf
+50 750 Td
+(Weekly Report - Week 2) Tj
+0 -30 Td
+/F1 12 Tf
+(Student Name: John Doe) Tj
+0 -20 Td
+(Period: June 8-14, 2025) Tj
+0 -20 Td
+(Company: TechCorp Solutions) Tj
+0 -40 Td
+/F1 14 Tf
+(Summary:) Tj
+0 -25 Td
+/F1 11 Tf
+(Developed API integration skills this week. Successfully) Tj
+0 -15 Td
+(built a tool for fetching and parsing data from public) Tj
+0 -15 Td
+(APIs. Focused on error handling and edge cases to) Tj
+0 -15 Td
+(ensure robust implementation.) Tj
+0 -40 Td
+/F1 14 Tf
+(Achievements:) Tj
+0 -20 Td
+/F1 11 Tf
+(- Created API client with retry logic) Tj
+0 -15 Td
+(- Implemented JSON parsing and validation) Tj
+0 -15 Td
+(- Added comprehensive error handling) Tj
+0 -15 Td
+(- Wrote unit tests for API functions) Tj
+0 -15 Td
+(- Documented API usage patterns) Tj
+0 -40 Td
+/F1 14 Tf
+(Skills Applied:) Tj
+0 -20 Td
+/F1 11 Tf
+(- Python requests library) Tj
+0 -15 Td
+(- API Design patterns) Tj
+0 -15 Td
+(- Error handling and logging) Tj
+0 -15 Td
+(- Unit testing with pytest) Tj
+0 -40 Td
+/F1 14 Tf
+(Next Week:) Tj
+0 -20 Td
+/F1 11 Tf
+(- Work on data structures implementation) Tj
+0 -15 Td
+(- Study optimization techniques) Tj
+ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f
+0000000009 00000 n
+0000000058 00000 n
+0000000115 00000 n
+0000000274 00000 n
+0000000351 00000 n
+trailer
+<<
+/Size 6
+/Root 1 0 R
+>>
+startxref
+852
+%%EOF
