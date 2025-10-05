@@ -1,0 +1,25 @@
+# Sample files - consider removing for production deployment
+public/sample-resume.pdf
+public/reports/week*.pdf
+
+# Development files
+.env.local
+.env.development
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Optional: Add if you want to exclude large sample files
+# public/sample-resume.pdf
+# public/reports/
