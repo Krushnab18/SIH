@@ -28,6 +28,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = () => {
     setUser(null);
     localStorage.removeItem('internconnect_user');
+    // Force a page reload to ensure clean state
+    window.location.href = '/';
   };
 
   return (
